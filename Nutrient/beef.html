@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nutrient</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link href="css/element.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Geostar+Fill|Leckerli+One|Montez" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="./js/ekko-lightbox.js"></script>
+
+</head>
+
+<body>
+    <section id="header">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                    <a class="navbar-brand heading_tag" href="index.html">CookBook </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="tag_menu active_tab" href="index.html">HOME</a> </li>
+
+                        <li>
+                            <a class="tag_menu" href="about.html">ABOUT</a> </li>
+
+
+                        <li>
+                            <a class="tag_menu" href="menu.html">DISHES</a> </li>
+
+                        <li>
+                            <a class="tag_menu" href="recipes.html">RECIPES</a> </li>
+
+                        <li>
+                            <a class="tag_menu" href="team.html">TEAM</a> </li>
+
+                        <li>
+                            <a class="tag_menu" href="contact.html">CONTACT</a> </li>
+
+
+
+                    </ul>
+
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </section>
+
+    <section id="header_mini">
+        <div class="container">
+            <div class="row">
+                <div class="header_mini clearfix">
+                    <h1><a class="heading_tag" href="index.html">Nutrient</a></h1>
+                </div>
+                <a id="menu-toggle" href="#" class="btn btn-warning btn-lg toggle"><i class="fa fa-toggle-on"></i></a>
+
+                <div id="sidebar-wrapper" class="">
+                    <ul class="sidebar-nav">
+                        <a id="menu-close" href="#" class="btn btn-default btn-lg pull-right toggle"><i class="fa fa-remove"></i></a>
+                        <li class="sidebar-brand">
+                            <a class="heading_tag" href="index.html">Nutrient</a></li>
+                        <li>
+                            <a class="tag_menu active_tab" href="index.html">HOME</a> </li>
+
+                        <li>
+                            <a class="tag_menu" href="about.html">ABOUT</a> </li>
+
+                        <li>
+                            <a class="tag_menu" href="menu.html">DISHES</a> </li>
+
+                        <li>
+                            <a class="tag_menu" href="recipes.html">RECIPES</a> </li>
+
+                        <li>
+                            <a class="tag_menu" href="team.html">TEAM</a> </li>
+
+                        <li>
+                            <a class="tag_menu" href="contact.html">CONTACT</a> </li>
+
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="center">
+        <div class="center_main clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="center text-center clearfix">
+                        <h2 class="heading_tag">We’ve Some Quality Of Food </h2>
+                        <h1>HackIowa 2021 CookBook</h1>
+                        <h3>For Inquiries Call (123)456-7890 </h3>
+                        <h4><a href="contact.html">BOOK ORDER</a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <section id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="footer text-center">
+                        <p> © 2021 CookBook. All Rights Reserved | Design by CookBook LLC inc.</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+    <script type="text/javascript">
+        $("#menu-close").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('i.glyphicon-thumbs-up, i.glyphicon-thumbs-down').click(function() {
+                var $this = $(this),
+                    c = $this.data('count');
+                if (!c) c = 0;
+                c++;
+                $this.data('count', c);
+                $('#' + this.id + '-bs3').html(c);
+            });
+            $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
+            });
+        });
+    </script>
+</body>
+
+</html>
