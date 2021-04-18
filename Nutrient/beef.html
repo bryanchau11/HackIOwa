@@ -14,7 +14,34 @@
     <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
     <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js">
+    </script>
 
+    <!-- CSS FOR STYLING THE PAGE -->
+    <style>
+        table {
+            margin: 0 auto;
+            font-size: large;
+            border: 1px solid black;
+        }
+        
+        td {
+            background-color: #E4F5D4;
+            border: 1px solid black;
+        }
+        
+        th,
+        td {
+            font-weight: bold;
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        td {
+            font-weight: lighter;
+        }
+    </style>
 </head>
 
 <body>
@@ -101,9 +128,41 @@
     </section>
 
     <section id="menu" class="clearfix">
-        page skeleton page skeleton page skeleton page skeleton page skeleton page skeleton page skeleton<br>page skeleton page skeleton page skeleton page skeleton page skeleton page skeleton page skeleton<br>page skeleton page skeleton page skeleton
-        page skeleton page skeleton page skeleton page skeleton<br>page skeleton page skeleton page skeleton page skeleton page skeleton page skeleton page skeleton<br>page skeleton page skeleton page skeleton page skeleton page skeleton page skeleton
-        page skeleton<br>page skeleton page skeleton page skeleton page skeleton page skeleton page skeleton page skeleton<br>
+
+        <table id='table'>
+            <!-- HEADING FORMATION -->
+            <tr>
+                <th>BEEF with</th>
+                <th></th>
+
+            </tr>
+        </table>
+        <script>
+            $(document).ready(function() {
+
+                // FETCHING DATA FROM JSON FILE
+                $.getJSON("biIngredientWeight.json",
+                    function(data) {
+                        var beef_with = '';
+
+                        // ITERATING THROUGH OBJECTS
+                        $.each(data, function(key, value) {
+
+                            //CONSTRUCTION OF ROWS HAVING
+                            // DATA FROM JSON OBJECT
+                            beef_with += '<tr>';
+                            beef_with += '<td>' +
+                                value.beef + '</td>';
+
+
+                            beef_with += '</tr>';
+                        });
+
+                        //INSERTING ROWS INTO TABLE 
+                        $('#table').append(beef_with);
+                    });
+            });
+        </script>
     </section>
 
 
