@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Crash Course</title>
+
+    <style>
+        [class*="col"] {
+            padding: 1rem;
+            background-color: #33b5e5;
+            border: 2px solid #fff;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body onload="listIngredients()">
+    <div class="container" id="demo"></div>
+    </div>
+
+
+
+
+
+    <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+        //		onclick="listIngredients()"
+        function listIngredients() {
+
+            var url = 'https://raw.githubusercontent.com/bryanchau11/HackIOwa/main/uniIngredientWeight.json';
+
+            function httpGet(theUrl) {
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("GET", theUrl, false); // false for synchronous request
+                xmlHttp.send(null);
+                return xmlHttp.responseText;
+            }
+
+            var allText = httpGet(url);
+            var allJSON = JSON.parse(allText);
+            //console.log(allJSON)
+            var i = 0;
+            str = ''
+            var j = 0;
+            for (item in allJSON) {
+                i = i + 1
+                if (i < 21) {
+
+                    if (i % 2 == 1) {
+                        str = str + '<div class="row">'
+
+
+                    }
+                    j = j + 1;
+                    str = str + '<div class="col"><button type="button" class="btn" onclick="ingredient2(' + "'" + item + "'" + ')"><h1 class="display-1">' + item + '</h1></button></div>'
+                    if (j == 2) {
+                        str = str + '</div>'
+                        j = 0;
+                    }
+
+                }
+
+
+
+            }
+            document.getElementById("demo").innerHTML = str
+
+        };
+
+        function ingredient2(token) {
+            //console.log(token)
+            document.getElementById("demo").innerHTML = "";
+
+
+            var url = 'https://raw.githubusercontent.com/bryanchau11/HackIOwa/main/bi-ingredient-split/' + token + '.json';
+
+            function httpGet(theUrl) {
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("GET", theUrl, false); // false for synchronous request
+                xmlHttp.send(null);
+                return xmlHttp.responseText;
+            }
+
+            var allText = httpGet(url);
+            var allJSON = JSON.parse(allText);
+            console.log(allJSON)
+            var i = 0;
+            str = ''
+            var j = 0;
+            for (item in allJSON) {
+                i = i + 1
+                if (i < 21) {
+
+                    if (i % 2 == 1) {
+                        str = str + '<div class="row">'
+
+
+                    }
+                    j = j + 1;
+                    str = str + '<div class="col"><button type="button" class="btn" onclick="recipeFinder(' + "'" + token + "'," + "'" + item + "'" + ')"><h1 class="display-1">' + item + '</h1></button></div>'
+                    if (j == 2) {
+                        str = str + '</div>'
+                        j = 0;
+                    }
+
+                }
+
+
+
+            }
+            document.getElementById("demo").innerHTML = str
+        }
+
+
+        function recipeFinder(token, item) {
+            console.log(token[0], item)
+            document.getElementById("demo").innerHTML = "";
+
+
+            var url = 'https://raw.githubusercontent.com/bryanchau11/HackIOwa/main/bi-ingredient/' + token[0] + '.json';
+
+            function httpGet(theUrl) {
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("GET", theUrl, false); // false for synchronous request
+                xmlHttp.send(null);
+                return xmlHttp.responseText;
+            }
+
+            var allText = httpGet(url);
+            var allJSON = JSON.parse(allText);
+            //console.log(allJSON)
+            var allRecipe = allJSON[token][item];
+            console.log(allRecipe[0])
+
+            var i = 0;
+            str = ''
+            var j = 0;
+
+            for (k = 0; k < 25; k++) {
+                i = i + 1
+                if (i < 21) {
+
+                    if (i % 2 == 1) {
+                        str = str + '<div class="row">'
+
+
+                    }
+                    j = j + 1;
+                    str = str + '<div class="col"><button type="button" class="btn" onclick="recipeGenerate(' + "'" + allRecipe[k] + "'" + ')"><h1 class="h4">' + allRecipe[k] + '</h1></button></div>'
+                    if (j == 2) {
+                        str = str + '</div>'
+                        j = 0;
+                    }
+
+                }
+
+
+
+            }
+            document.getElementById("demo").innerHTML = str
+        }
+
+
+
+        function recipeGenerate(token) {
+
+
+            var url = "https://raw.githubusercontent.com/bryanchau11/HackIOwa/main/recipes/" + token[0].toLowerCase() + "_recipe.json";
+
+            function httpGet(theUrl) {
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("GET", theUrl, false); // false for synchronous request
+                xmlHttp.send(null);
+                return xmlHttp.responseText;
+            }
+
+            var allText = httpGet(url);
+            var allJSON = JSON.parse(allText);
+            //console.log(allJSON)
+            if (token in allJSON) {
+                var recipe = allJSON[token];
+
+                //console.log(allRecipe[0])
+
+                str = '<div class="container-fluid"><div class="row"><div class="col-sm-3 col-md-2 sidebar"><ul class="nav nav-sidebar"><li><h4>Recomendations</h4></li>'
+
+                //'<li>Reports</li><li>Analytics</li><li>Export</li>'
+
+
+                var url = "https://raw.githubusercontent.com/bryanchau11/HackIOwa/main/similarity.json";
+
+                var allText2 = httpGet(url);
+                var allJSON2 = JSON.parse(allText2);
+                //console.log(allJSON)
+                var list = allJSON2[token];
+                for (item in list) {
+                    str = str + '<div class="col"><button type="button" class="btn" onclick="recipeGenerate(' + "'" + list[item] + "'" + ')"><h5 class="h5">' + list[item] + '</h5></button></div>'
+
+                }
+                console.log(list)
+
+                str = str + '</ul></div>'
+
+
+
+                str = str + '<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"><div class="row"><div class="col"><h1>' + token + '</h1></div></div><div><h2>Ingredients</h2><ul>'
+                for (item in recipe['ingredients']) {
+                    str = str + '<li><p class="text-left">' + recipe['ingredients'][item] + '</p></li>'
+
+                }
+                str = str + '</ul><div>'
+
+                str = str + "<div><h2>Instructions</h2><ul>"
+                for (item in recipe['instructions']) {
+                    str = str + '<li><p class="text-justify">' + recipe['instructions'][item] + '</p></li>'
+
+                }
+                str = str + '</ul></div></div></div>'
+
+
+                document.getElementById("demo").innerHTML = str
+            }
+        }
+    </script>
+</body>
+
+</html>
